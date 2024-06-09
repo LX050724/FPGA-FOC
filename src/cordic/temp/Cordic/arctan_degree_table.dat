@@ -1,0 +1,16 @@
+4'b0000: tanangle = 17'd11520; // theta=45
+4'b0001: tanangle = 17'd6801; // theta=26.5651
+4'b0010: tanangle = 17'd3593; // theta=14.0362
+4'b0011: tanangle = 17'd1824; // theta=7.12502
+4'b0100: tanangle = 17'd916; // theta=3.57633
+4'b0101: tanangle = 17'd458; // theta=1.78991
+4'b0110: tanangle = 17'd229; // theta=0.895174
+4'b0111: tanangle = 17'd115; // theta=0.447614
+4'b1000: tanangle = 17'd57; // theta=0.223811
+4'b1001: tanangle = 17'd29; // theta=0.111906
+4'b1010: tanangle = 17'd14; // theta=0.0559529
+4'b1011: tanangle = 17'd7; // theta=0.0279765
+4'b1100: tanangle = 17'd4; // theta=0.0139882
+4'b1101: tanangle = 17'd2; // theta=0.00699411
+4'b1110: tanangle = 17'd1; // theta=0.00349706
+4'b1111: tanangle = 17'd0; // theta=0.00174853

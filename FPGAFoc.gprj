@@ -1,0 +1,20 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5A-25A" pn="GW5A-LV25MG121NES">gw5a25a-000</Device>
+    <FileList>
+        <File path="src/PWM.v" type="file.verilog" enable="1"/>
+        <File path="src/PWM_Controller.v" type="file.verilog" enable="1"/>
+        <File path="src/PWM_Conv.v" type="file.verilog" enable="1"/>
+        <File path="src/SVPWM.v" type="file.verilog" enable="1"/>
+        <File path="src/cordic/cordic.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_pll/gowin_pll.v" type="file.verilog" enable="1"/>
+        <File path="src/sin_cos.v" type="file.verilog" enable="1"/>
+        <File path="src/top.v" type="file.verilog" enable="1"/>
+        <File path="src/FPGAFoc.cst" type="file.cst" enable="1"/>
+        <File path="src/FPGAFoc.sdc" type="file.sdc" enable="1"/>
+        <File path="src/FPGAFoc.rao" type="file.gao" enable="0"/>
+    </FileList>
+</Project>
