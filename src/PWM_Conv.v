@@ -32,7 +32,7 @@ module PWM_Conv #(
 
     genvar gi;
     generate
-        for (gi = 0; gi < PWM_CHANNEL_NUM; gi = gi + 1) begin
+        for (gi = 0; gi < PWM_CHANNEL_NUM; gi = gi + 1) begin: comp_genloop
             assign pwm_array[gi] = perunit_to_unsigned(axis_tdata[(gi+1)*PWM_WIDTH-1:gi*PWM_WIDTH]);
             assign comp1[(gi+1)*PWM_WIDTH-1:gi*PWM_WIDTH] = comp1_array[gi];
             assign comp2[(gi+1)*PWM_WIDTH-1:gi*PWM_WIDTH] = comp2_array[gi];
@@ -50,8 +50,8 @@ module PWM_Conv #(
         else begin
             if (axis_tvalid) begin
                 for (i = 0; i < PWM_CHANNEL_NUM; i = i + 1) begin
-                    comp1_array[i] <= (PWM_RELOAD / 2) - pwm_array[i]; //((pwm_array[i] * RESIZE) >> PWM_WIDTH);
-                    comp2_array[i] <= (PWM_RELOAD / 2) + pwm_array[i]; //((pwm_array[i] * RESIZE) >> PWM_WIDTH);
+                    comp1_array[i] <= (PWM_RELOAD / $signed(3'd2)) - pwm_array[i]; //((pwm_array[i] * RESIZE) >> PWM_WIDTH);
+                    comp2_array[i] <= (PWM_RELOAD / $signed(3'd2)) + pwm_array[i]; //((pwm_array[i] * RESIZE) >> PWM_WIDTH);
                 end
             end
         end

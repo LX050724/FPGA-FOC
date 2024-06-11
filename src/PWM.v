@@ -30,9 +30,9 @@ module PWM #(
     assign PWM_H = (PWM_H_reg && !brake) ? PWMH_ACTIVE_LEVEL : ~PWMH_ACTIVE_LEVEL;
     assign PWM_L = (PWM_L_reg && !brake) ? PWML_ACTIVE_LEVEL : ~PWML_ACTIVE_LEVEL;
 
-    assign comp1_val = cnt <= comp1;
-    assign comp2_val = cnt <= comp2;
-    assign pwm_state = (comp1_val ^ comp2_val);
+    wire comp1_val = cnt <= comp1;
+    wire comp2_val = cnt <= comp2;
+    wire pwm_state = (comp1_val ^ comp2_val);
 
     always @(posedge clk) begin
         if (!rstn) begin
@@ -62,7 +62,7 @@ module PWM #(
                 end
 
                 STATE_CHANGE_L: begin
-                    dcnt <= dcnt + 1;
+                    dcnt <= dcnt + 1'd1;
                     PWM_H_reg <= 0;
                     PWM_L_reg <= 0;
                     if (dcnt == DEAT_TIME) begin
@@ -79,7 +79,7 @@ module PWM #(
                 end
 
                 STATE_CHANGE_H: begin
-                    dcnt <= dcnt + 1;
+                    dcnt <= dcnt + 1'd1;
                     PWM_H_reg <= 0;
                     PWM_L_reg <= 0;
                     if (dcnt == DEAT_TIME) begin

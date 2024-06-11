@@ -14,7 +14,6 @@ module PWM_Controller #(
         input [PWM_CHANNEL_NUM*PWM_WIDTH-1:0] axis_tdata,
         input axis_tvalid,
         input brake,
-        input [PWM_WIDTH-1:0] deat_time,
         input [PWM_WIDTH*EVENT_CHANNEL_NUM-1:0] events_comp,
         output [PWM_CHANNEL_NUM-1:0] PWM_H,
         output [PWM_CHANNEL_NUM-1:0] PWM_L,
@@ -27,7 +26,7 @@ module PWM_Controller #(
     // integer i;
 
     generate
-        for (gi = 0; gi < EVENT_CHANNEL_NUM; gi = gi + 1) begin
+        for (gi = 0; gi < EVENT_CHANNEL_NUM; gi = gi + 1) begin: events_out_genloop
             assign events_out[gi] = cnt == events_comp[(gi+1)*PWM_WIDTH-1:gi*PWM_WIDTH] ? 1'b1 : 1'b0;
         end
     endgenerate
@@ -62,7 +61,7 @@ module PWM_Controller #(
              );
 
     generate
-        for (gi = 0; gi < PWM_CHANNEL_NUM; gi = gi + 1) begin
+        for (gi = 0; gi < PWM_CHANNEL_NUM; gi = gi + 1) begin: pwm_genloop
             wire [PWM_WIDTH-1:0] pwm_comp1 = comp1[(gi+1)*PWM_WIDTH-1:gi*PWM_WIDTH];
             wire [PWM_WIDTH-1:0] pwm_comp2 = comp2[(gi+1)*PWM_WIDTH-1:gi*PWM_WIDTH];
 

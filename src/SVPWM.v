@@ -41,7 +41,7 @@ module SVPWM #(
     assign pwm_out_tdata  = {pwm_u, pwm_v, pwm_w};
     assign pwm_out_tvalid = valid_delay[4];
 
-    function [PWM_WIDTH:0] MAX;
+    function signed [PWM_WIDTH:0] MAX;
         input signed [PWM_WIDTH:0] a;
         input signed [PWM_WIDTH:0] b;
         begin
@@ -52,7 +52,7 @@ module SVPWM #(
         end
     endfunction
 
-    function [PWM_WIDTH:0] MIN;
+    function signed [PWM_WIDTH:0] MIN;
         input signed [PWM_WIDTH:0] a;
         input signed [PWM_WIDTH:0] b;
         begin
@@ -94,21 +94,21 @@ module SVPWM #(
 
             // 2
             va[0] <= alpha_tmp;
-            vb[0] <= -alpha_tmp / 2 + mux;
-            vc[0] <= -alpha_tmp / 2 - mux;
+            vb[0] <= -alpha_tmp / $signed(3'd2) + mux;
+            vc[0] <= -alpha_tmp / $signed(3'd2) - mux;
 
             // 3
             vmax <= MAX(va[0], MAX(vb[0], vc[0]));
             vmin <= MIN(va[0], MIN(vb[0], vc[0]));
-            va[1] <= va[0] * 2;
-            vb[1] <= vb[0] * 2;
-            vc[1] <= vc[0] * 2;
+            va[1] <= va[0] * $signed(3'd2);
+            vb[1] <= vb[0] * $signed(3'd2);
+            vc[1] <= vc[0] * $signed(3'd2);
 
             // 4
             vcom <= vmax + vmin;
-            va[2] <= va[1] + (2 ** (PWM_WIDTH - 1));
-            vb[2] <= vb[1] + (2 ** (PWM_WIDTH - 1));
-            vc[2] <= vc[1] + (2 ** (PWM_WIDTH - 1));
+            va[2] <= va[1] + (2'd2 ** (PWM_WIDTH - 1));
+            vb[2] <= vb[1] + (2'd2 ** (PWM_WIDTH - 1));
+            vc[2] <= vc[1] + (2'd2 ** (PWM_WIDTH - 1));
 
             // 5
             pwm_u <= vcom - va[2];

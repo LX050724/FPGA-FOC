@@ -39,7 +39,7 @@ module top (
         else begin
             if (events_out[0]) begin
                 if (cnt < PI)
-                    cnt <= cnt + 1;
+                    cnt <= cnt + 1'd1;
                 else
                     cnt <= -PI;
             end
@@ -76,14 +76,13 @@ module top (
     PWM_Controller#(
                       .PWMH_ACTIVE_LEVEL(1),
                       .PWML_ACTIVE_LEVEL(1),
-                      .PWM_RELOAD(5000), // 20KHz
+                      .PWM_RELOAD(4999), // 20KHz
                       .DEAT_TIME(5) // 50ns
                   ) pwm (
                       .clk(clk),
                       .rstn(rstn),
                       .events_out(events_out),
                       .brake(1'b0),
-                      .deat_time(16'd100),
                       .axis_tvalid(pwm_out_tvalid),
                       .axis_tdata(pwm_out_tdata),
                       .events_comp({ 16'd0, 16'd2500 }),

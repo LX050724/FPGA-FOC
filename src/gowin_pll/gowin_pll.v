@@ -5,7 +5,7 @@
 //Part Number: GW5A-LV25MG121NES
 //Device: GW5A-25
 //Device Version: A
-//Created Time: Sat Jun  8 21:51:40 2024
+//Created Time: Tue Jun 11 23:50:33 2024
 
 module Gowin_PLL (clkout0, clkin);
 
